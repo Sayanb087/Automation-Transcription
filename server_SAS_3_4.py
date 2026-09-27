@@ -1,9 +1,4 @@
-"""
-Sarvam AI Transcription Server — uses official sarvamai SDK
-Install: pip install sarvamai
-Run:     python server.py
-Open:    http://localhost:5050
-"""
+
 
 import json, sys, tempfile, os, threading, time
 from pathlib import Path
