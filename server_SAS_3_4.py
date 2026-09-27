@@ -6,22 +6,14 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 PORT = 5050
 
-# ── Check SDK installed ───────────────────────────────────────────────────────
+# Check SDK installed 
 try:
     from sarvamai import SarvamAI
 except ImportError:
-    print("""
-  ╔══════════════════════════════════════════════╗
-  ║  sarvamai SDK not found. Please install it:  ║
-  ║                                              ║
-  ║     pip install sarvamai                     ║
-  ║                                              ║
-  ║  Then run:  python server.py                 ║
-  ╚══════════════════════════════════════════════╝
-""")
+    print(""" sarvamai SDK not found.""")
     sys.exit(1)
 
-# ── Google Drive helpers ──────────────────────────────────────────────────────
+# Google Drive helpers 
 import re as _re
 
 _GDRIVE_FILE_RE = _re.compile(r"drive\.google\.com/file/d/([a-zA-Z0-9_-]+)")
@@ -207,7 +199,7 @@ def _download_from_drive(url):
         return None, None, f"All strategies failed. Last error: {ex}"
 
 
-# ── In-memory job store ───────────────────────────────────────────────────────
+
 jobs = {}
 jobs_lock = threading.Lock()
 
@@ -1305,12 +1297,8 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     server = HTTPServer(("127.0.0.1", PORT), Handler)
     print(f"""
-  ╔══════════════════════════════════════════════╗
-  ║        Saaras Transcribe — Local Server      ║
-  ╠══════════════════════════════════════════════╣
-  ║  Open in browser:  http://localhost:{PORT}     ║
-  ║  Press Ctrl+C to stop                        ║
-  ╚══════════════════════════════════════════════╝
+     Open in browser:  http://localhost:{PORT}     
+     Press Ctrl+C to stop                      
 """)
     try:
         server.serve_forever()
